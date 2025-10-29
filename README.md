@@ -36,3 +36,38 @@ project-root/
 ├── docker-compose.yml   # Cấu hình toàn bộ hệ thống
 ├── .env                  # Biến môi trường
 └── README.md             # Tài liệu hướng dẫn
+
+file .env
+# Backend
+BACKEND_PORT=8000
+DATABASE_URL=postgresql://signuser:signpass@postgres:5432/signdb
+
+# Celery
+REDIS_URL=redis://redis:6379/0
+CELERY_BROKER_URL=redis://redis:6379/0
+CELERY_RESULT_BACKEND=redis://redis:6379/0
+
+# Frontend
+VITE_API_URL=http://localhost:8000
+REACT_APP_API_URL=http://localhost:8000
+
+# PostgreSQL
+POSTGRES_USER=signuser
+POSTGRES_PASSWORD=signpass
+POSTGRES_DB=signdb
+
+# Storage
+STORAGE_PATH=/app/storage
+
+# MinIO (Object Storage)
+MINIO_ENDPOINT=http://minio:9000
+MINIO_ACCESS_KEY=minio-access-key
+MINIO_SECRET_KEY=minio-secret-key
+MINIO_BUCKET=sign-dataset
+
+# JWT Token Secrets
+ACCESS_TOKEN_SECRET=your-super-secret-access-token-key-here
+REFRESH_TOKEN_SECRET=your-super-secret-refresh-token-key-here
+
+Khởi chạy hệ thống
+docker compose up --build
