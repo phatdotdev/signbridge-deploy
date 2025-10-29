@@ -11,6 +11,24 @@
 
 ## 🗂️ Cấu trúc thư mục
 
+project-root/
+├── backend/ # FastAPI backend
+│ ├── app/
+│ ├── requirements.txt
+│ ├── Dockerfile
+│ └── ...
+│
+├── frontend/ # React frontend
+│ ├── src/
+│ ├── package.json
+│ ├── Dockerfile
+│ └── ...
+│
+├── dataset/ # Dataset lưu file mẫu
+├── docker-compose.yml # Cấu hình docker toàn hệ thống
+├── .env # Biến môi trường
+└── README.md
+
 1️⃣ Clone repository
 
 2️⃣ Tạo file .env
