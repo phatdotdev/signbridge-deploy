@@ -15,6 +15,9 @@ services:
     depends_on:
       - redis
       - postgres
+    environment:
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:3000,http://localhost:80,http://localhost,http://172.19.240.1,http://172.19.240.1:80,http://172.18.0.1,http://backend:8000,http://frontend
+
     env_file:
       - ./.env
 

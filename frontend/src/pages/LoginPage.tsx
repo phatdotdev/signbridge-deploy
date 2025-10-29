@@ -19,6 +19,11 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
     setLoading(true);
+    const response = await login(username, password);
+    if (response.ok) {
+      document.cookie = `access_token=${response?.data?.access_token}; path=/`;
+      document.cookie = `refresh_token=${response?.data.refresh_token}; path=/`;
+    }
 
     try {
       const response = await login(username, password);
@@ -33,11 +38,11 @@ export default function LoginPage() {
       console.error("Login error:", err);
 
       if (err.response?.status === 401) {
-        setError("Sai tên đăng nhập hoặc mật khẩu.");
+        setError("Username or password is incorrect.");
       } else if (err.response?.status === 500) {
-        setError("Lỗi máy chủ. Vui lòng thử lại sau.");
+        setError("Server error.");
       } else {
-        setError(err instanceof Error ? err.message : "Đăng nhập thất bại");
+        setError(err instanceof Error ? err.message : "Login failed.");
       }
     } finally {
       setLoading(false);

@@ -10,6 +10,7 @@ import {
   getCurrentUser,
   login as loginApi,
   logout as logoutApi,
+  type LoginResponse,
   type User,
 } from "../api/authentication";
 
@@ -21,7 +22,7 @@ interface AuthContextType {
   isLoading: boolean;
   isAuthenticated: boolean;
 
-  login: (username: string, password: string) => Promise<Result<User>>;
+  login: (username: string, password: string) => Promise<Result<LoginResponse>>;
 
   logout: () => Promise<void>;
 }
@@ -63,24 +64,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const login = async (
     username: string,
     password: string
-  ): Promise<Result<User>> => {
+  ): Promise<Result<LoginResponse>> => {
     const loginResult = await loginApi(username, password);
-
     if (loginResult.ok) {
-      const userResult = await getCurrentUser();
-
-      if (userResult.ok) {
-        setUserInfo(userResult.data);
-        return { ok: true, data: userResult.data };
-      }
-
-      return {
-        ok: false,
-        error: userResult.error || "Can not get user info.",
-      };
+      return { ok: true, data: loginResult.data };
+    } else {
+      return { ok: false, error: loginResult.error };
     }
-
-    return { ok: false, error: loginResult.error };
   };
 
   // logout handler

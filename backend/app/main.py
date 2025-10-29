@@ -1,15 +1,18 @@
 from fastapi import FastAPI
+import os
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import dataset, upload, jobs, users, auth
 from app.db import init_db
 
 app = FastAPI(title="Sign Dataset Backend")
 
+origins = os.getenv("CORS_ORIGINS", "").split(",")
+print(origins)
 # Add CORS middleware to allow frontend requests
 app.add_middleware(
     CORSMiddleware,
     # allow_origins=["*"],
-    allow_origins=["http://localhost:5173", "http://localhost:3000", "http://localhost:80", "http://localhost", "http:///127.0.0.1:80", "http://127.0.0.1:5173"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
