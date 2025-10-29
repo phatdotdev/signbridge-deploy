@@ -1,90 +1,38 @@
-# 🧠 Sign Recognition System - FastAPI + React + Celery + Redis + PostgreSQL
+# 🧠 Sign Recognition System
 
-Ứng dụng fullstack gồm:
-- **Backend:** FastAPI (Python 3.11)
-- **Frontend:** React (Node 18)
-- **Message Queue:** Celery + Redis
-- **Database:** PostgreSQL
-- **Triển khai:** Docker Compose
+**Fullstack ứng dụng nhận diện ngôn ngữ ký hiệu** sử dụng **FastAPI + React + Celery + Redis + PostgreSQL + MinIO**, được đóng gói hoàn toàn bằng **Docker Compose**.
+
+---
+
+## 🚀 Tính năng chính
+
+- **Backend mạnh mẽ** với FastAPI (Python 3.11)
+- **Giao diện người dùng hiện đại** bằng React (Node 18)
+- **Xử lý tác vụ nền** bằng Celery + Redis
+- **Lưu trữ dữ liệu** với PostgreSQL
+- **Quản lý file & dataset** qua MinIO (S3-compatible)
+- **Triển khai dễ dàng** với Docker Compose
+- **Hỗ trợ upload, xử lý video/hình ảnh, nhận diện ký hiệu**
 
 ---
 
 ## 🗂️ Cấu trúc thư mục
 
+```bash
 project-root/
-├── backend/ # FastAPI backend
-│ ├── app/
-│ ├── requirements.txt
-│ ├── Dockerfile
-│ └── ...
+├── backend/              # FastAPI backend
+│   ├── app/              # Source code
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   └── ...
 │
-├── frontend/ # React frontend
-│ ├── src/
-│ ├── package.json
-│ ├── Dockerfile
-│ └── ...
+├── frontend/             # React frontend
+│   ├── src/
+│   ├── package.json
+│   ├── Dockerfile
+│   └── ...
 │
-├── dataset/ # Dataset lưu file mẫu
-├── docker-compose.yml # Cấu hình docker toàn hệ thống
-├── .env # Biến môi trường
-└── README.md
-
-1️⃣ Clone repository
-
-2️⃣ Tạo file .env
-
-# Backend
-BACKEND_PORT=8000
-DATABASE_URL=postgresql://signuser:signpass@postgres:5432/signdb
-
-# Celery
-REDIS_URL=redis://redis:6379/0
-
-# Frontend
-VITE_API_URL=http://localhost:8000
-
-# PostgreSQL (container)
-POSTGRES_USER=signuser
-POSTGRES_PASSWORD=signpass
-POSTGRES_DB=signdb
-
-# ===============================
-# ⚙️ BACKEND CONFIGURATION
-# ===============================
-DATABASE_URL=postgresql://signuser:signpass@postgres:5432/signdb
-
-# ===============================
-# 🧮 CELERY CONFIGURATION
-# ===============================
-CELERY_BROKER_URL=redis://redis:6379/0
-CELERY_RESULT_BACKEND=redis://redis:6379/0
-
-# ===============================
-# 💾 STORAGE CONFIGURATION
-# ===============================
-STORAGE_PATH=/app/storage
-
-# ===============================
-# ☁️ MINIO CONFIGURATION
-# ===============================
-# MinIO dùng để lưu trữ file, hình ảnh, dataset,...
-MINIO_ENDPOINT=http://minio:9000
-MINIO_ACCESS_KEY=minio-access-key
-MINIO_SECRET_KEY=minio-secret-key
-MINIO_BUCKET=sign-dataset
-
-# ===============================
-# 🔐 TOKEN SECRETS
-# ===============================
-ACCESS_TOKEN_SECRET=your-access-token-secret
-REFRESH_TOKEN_SECRET=your-refresh-token-secret
-
-# ===============================
-# 🌐 FRONTEND CONFIGURATION
-# ===============================
-REACT_APP_API_URL=http://localhost:8000
-
-
-3️⃣ Build & Run Docker Compose
-
-docker compose up --build
+├── dataset/              # Thư mục lưu dataset mẫu (mounted)
+├── docker-compose.yml   # Cấu hình toàn bộ hệ thống
+├── .env                  # Biến môi trường
+└── README.md             # Tài liệu hướng dẫn
