@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import type { ReactNode } from "react";
 import Button from "./ui/Button";
 import { useAuth } from "../context/AuthContext";
@@ -85,6 +85,11 @@ export default function Layout({ children }: { children: ReactNode }) {
   const showUserInfo = () => {
     setSidebarOpen(false);
     redirect("/me");
+  };
+
+  const redirectLogin = () => {
+    setSidebarOpen(false);
+    redirect("/login");
   };
 
   return (
@@ -179,8 +184,11 @@ export default function Layout({ children }: { children: ReactNode }) {
               </>
             ) : (
               // CASE 2: CHƯA ĐĂNG NHẬP (Hiển thị nút Login nổi bật)
-              <Link to="/login" className="block w-full">
-                <button className="w-full flex items-center justify-center p-3 text-sm font-bold text-white bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-700 hover:to-cyan-600 rounded-xl transition duration-150 ease-in-out shadow-lg shadow-indigo-500/30 hover:shadow-xl active:scale-[.99]">
+              <div className="block w-full">
+                <button
+                  onClick={redirectLogin}
+                  className="w-full flex items-center justify-center p-3 text-sm font-bold text-white bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-700 hover:to-cyan-600 rounded-xl transition duration-150 ease-in-out shadow-lg shadow-indigo-500/30 hover:shadow-xl active:scale-[.99]"
+                >
                   <svg
                     className="w-5 h-5 mr-2"
                     fill="none"
@@ -196,7 +204,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                   </svg>
                   Đăng Nhập
                 </button>
-              </Link>
+              </div>
             )}
           </div>
           {/* Footer */}
