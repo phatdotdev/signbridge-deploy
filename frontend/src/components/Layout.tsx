@@ -82,6 +82,11 @@ export default function Layout({ children }: { children: ReactNode }) {
     redirect("/login");
   };
 
+  const showUserInfo = () => {
+    setSidebarOpen(false);
+    redirect("/me");
+  };
+
   return (
     <div className="min-h-screen flex bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20">
       {/* Sidebar overlay for mobile and desktop when sidebar is open */}
@@ -127,7 +132,10 @@ export default function Layout({ children }: { children: ReactNode }) {
             {userInfo ? (
               // CASE 1: ĐÃ ĐĂNG NHẬP (Hiển thị Avatar, User Info, và nút Logout)
               <>
-                <div className="mb-4 p-3 bg-white/70 backdrop-blur-sm rounded-xl border border-slate-200 shadow-lg flex items-center transition duration-200 hover:shadow-xl">
+                <div
+                  onClick={showUserInfo}
+                  className="mb-4 p-3 bg-white/70 backdrop-blur-sm rounded-xl border border-slate-200 shadow-lg flex items-center transition duration-200 hover:shadow-xl"
+                >
                   {/* Avatar */}
                   <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-xl flex-shrink-0 ring-2 ring-white">
                     {userInfo.username.charAt(0).toUpperCase()}

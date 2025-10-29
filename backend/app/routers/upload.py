@@ -5,8 +5,10 @@ import uuid
 
 from app.processing import storage_utils as su
 from app.tasks import enqueue_process_video
-from fastapi import Body
+from fastapi import Body, Depends
 import numpy as np
+from ..core.oauth2 import get_current_user
+from ..db import User
 
 router = APIRouter(prefix="/upload", tags=["upload"])
 
@@ -21,6 +23,7 @@ async def upload_video(
     label: str = Form(...),
     dialect: str = Form(""),
     session_id: str = Form(None),
+    current_user: User = Depends(get_current_user)
 ):
     if not session_id:
         session_id = uuid.uuid4().hex
@@ -40,7 +43,7 @@ async def upload_video(
 
 
 @router.post("/camera")
-async def upload_camera(payload: dict = Body(...)):
+async def upload_camera(payload: dict = Body(...), current_user: User = Depends(get_current_user) ):
     """
     Accept frames (array of arrays) and metadata, save as npz via storage_utils.save_sample
     Payload example: { user: str, label: str, session_id: str, dialect: str, frames: [{timestamp, landmarks}, ...] }

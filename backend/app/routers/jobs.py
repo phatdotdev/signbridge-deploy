@@ -1,13 +1,14 @@
 from fastapi import APIRouter, Depends
 from typing import Optional
 from app.worker import celery_app
-from app.core.oauth2 import get_current_admin
+from ..core.oauth2 import get_current_admin
+from ..db import User
 
 router = APIRouter(prefix="/jobs", tags=["jobs"])
 
 
 @router.get("/{job_id}")
-def get_job_status(job_id: str, current_admin = Depends(get_current_admin)):
+def get_job_status(job_id: str, admin_user: User = Depends(get_current_admin)):
     """
     Query job status from Celery
     """
@@ -24,7 +25,7 @@ def get_job_status(job_id: str, current_admin = Depends(get_current_admin)):
 
 
 @router.get("/")
-def list_jobs(limit: int = 10, current_admin = Depends(get_current_admin)):
+def list_jobs(limit: int = 10, admin_user: User = Depends(get_current_admin)):
     """
     ⚠️ Celery không lưu job history mặc định.
     Để list nhiều job, bạn cần kết hợp Redis backend hoặc DB backend.

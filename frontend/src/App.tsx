@@ -13,6 +13,7 @@ import LoginPage from "./pages/LoginPage";
 import { AuthProvider } from "./context/AuthContext";
 import SignupPage from "./pages/SignupPage";
 import AdminRoutes from "./components/AdminRoutes";
+import UserInfoPage from "./pages/UserInfoPage";
 
 // const DashboardPage = lazy(() => import("./components/dashboard/AnalyticsOverview"));
 // const LabelsPage = lazy(() => import("./pages/LabelsPage"));
@@ -39,6 +40,7 @@ function App() {
               <Route path="/" element={<Navigate to="/upload" />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
+              <Route path="/me" element={<UserInfoPage />} />
             </Routes>
           </Suspense>
         </Layout>

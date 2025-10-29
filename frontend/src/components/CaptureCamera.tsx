@@ -13,15 +13,18 @@ import SessionSummary from "./SessionSumary";
 import FullscreenCaptureModal from "./FullscreenCaptureModal";
 import Button from "./ui/Button";
 import { TARGET_FRAMES, CAPTURE_COUNT } from "../config/capture";
+import { useAuth } from "../context/AuthContext";
 
 type Props = {
   onError?: (msg: string) => void;
 };
 
 export default function CaptureCamera({ onError }: Props) {
+  const { userInfo } = useAuth();
+
   // Removed frames state - now using only fullscreen capture
   const [label, setLabel] = useState("");
-  const [user] = useState("user1");
+  const [user] = useState(userInfo?.username || "user1");
   const [showGuide, setShowGuide] = useState(false);
   // Removed preview state - using fullscreen capture only
   const [showFullscreen, setShowFullscreen] = useState(false);

@@ -11,6 +11,7 @@ import Badge from "./ui/Badge";
 import type { MediaPipeLandmark, CameraInfo, QualityInfo } from "../types";
 import { OneEuroFilter } from "../utils/oneEuro";
 import { TARGET_FRAMES, CAPTURE_COUNT } from "../config/capture";
+import { useAuth } from "../context/AuthContext";
 
 // Use module-scope fixed constants so they are stable across renders and
 // won't need to be added to hook dependency arrays.
@@ -54,6 +55,8 @@ export default function FullscreenCaptureModal({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const cameraRef = useRef<Camera | null>(null);
   const rootRef = useRef<HTMLDivElement | null>(null);
+
+  const { userInfo } = useAuth();
 
   const [recording, setRecording] = useState(false);
   const [frames, setFrames] = useState<
@@ -1287,7 +1290,7 @@ export default function FullscreenCaptureModal({
                     onChange={(e) => setUser(e.target.value)}
                     placeholder="e.g., user001, john_doe"
                     className="w-full px-4 py-3 bg-gray-800/80 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                    disabled={recording || countdown > 0}
+                    disabled={recording || countdown > 0 || userInfo !== null}
                   />
                   {!user && (
                     <p className="text-xs text-yellow-400 mt-1">

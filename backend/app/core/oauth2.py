@@ -45,8 +45,7 @@ def verify_access_token(token: str):
         raise credentials_exception
 
 def verify_refresh_token(token: str):
-    if not token:
-        raise credentials_exception
+    
     try:
         payload = jwt.decode(token, REFRESH_TOKEN_SECRET, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
@@ -72,3 +71,14 @@ def get_current_admin(token: str = Depends(get_access_token), db: Session = Depe
             headers={"WWW-Authenticate": "Bearer"},
         )
     return user
+
+def check_resource_owner(resource_user: str, current_user: User):
+    """Kiểm tra user có phải chủ sở hữu resource hoặc là admin"""
+    if current_user.role == "admin":
+        return True
+    if current_user.username == resource_user:
+        return True
+    raise HTTPException(
+        status_code=status.HTTP_403_FORBIDDEN,
+        detail="You don't have permission to access this resource"
+    )
