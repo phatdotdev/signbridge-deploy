@@ -1,16 +1,11 @@
-project-root/
-│
-├── backend/
-│   ├── app/
-│   ├── requirements.txt
-│   ├── Dockerfile
-│
-├── frontend/
-│   ├── src/
-│   ├── package.json
-│   ├── Dockerfile
-│
-├── docker-compose.yml
-├── .env
-└── README.md
+# 🚀 Fullstack Application - FastAPI + React + Docker Compose
+
+Ứng dụng mẫu gồm:
+- **Backend:** FastAPI (Python)
+- **Frontend:** React (JavaScript)
+- **Triển khai:** Docker Compose
+
+---
+
+## 📦 Cấu trúc thư mục
 
