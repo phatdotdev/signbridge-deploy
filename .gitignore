@@ -1,0 +1,111 @@
+# =========================
+# ⚙️ PYTHON / FASTAPI BACKEND
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.pid
+*.swp
+*.bak
+
+# Virtual environments
+venv/
+.env/
+.env.bak
+.env.local
+.venv/
+ENV/
+env/
+env.bak/
+env.local/
+
+# Byte-compiled / optimized / DLL files
+*.so
+*.dll
+*.dylib
+
+# Mypy / Pytest / Coverage
+.mypy_cache/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# VSCode / JetBrains configs
+.vscode/
+.idea/
+
+# =========================
+# ⚛️ REACT FRONTEND
+# =========================
+node_modules/
+build/
+dist/
+.cache/
+*.log
+*.env
+.env.development.local
+.env.production.local
+.env.test.local
+
+# npm / yarn lock backups
+package-lock.json*
+yarn.lock*
+pnpm-lock.yaml*
+
+# =========================
+# 🐳 DOCKER / COMPOSE
+# =========================
+# Docker build caches
+*.pid
+*.seed
+*.tar
+*.bak
+*.orig
+
+# =========================
+# 🗄️ DATABASE / STORAGE
+# =========================
+postgres_data/
+dataset/
+storage/
+media/
+uploads/
+__storage__/
+__dataset__/
+
+# =========================
+# 🔐 SECRETS / CREDENTIALS
+# =========================
+*.pem
+*.key
+*.crt
+*.cert
+*.p12
+*.der
+*.csr
+*.pfx
+secrets.json
+config.json
+
+# =========================
+# 🧪 TESTING / TEMP FILES
+# =========================
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.old
+*.orig
+*.swp
+
+# =========================
+# 🧰 MISC
+# =========================
+*.DS_Store
+Thumbs.db
