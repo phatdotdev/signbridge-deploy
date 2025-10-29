@@ -36,8 +36,11 @@ project-root/
 ├── docker-compose.yml   # Cấu hình toàn bộ hệ thống
 ├── .env                  # Biến môi trường
 └── README.md             # Tài liệu hướng dẫn
+````
 
 file .env
+
+```
 # Backend
 BACKEND_PORT=8000
 DATABASE_URL=postgresql://signuser:signpass@postgres:5432/signdb
@@ -69,5 +72,8 @@ MINIO_BUCKET=sign-dataset
 ACCESS_TOKEN_SECRET=your-super-secret-access-token-key-here
 REFRESH_TOKEN_SECRET=your-super-secret-refresh-token-key-here
 
+```
 Khởi chạy hệ thống
+
+```
 docker compose up --build
